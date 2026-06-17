@@ -1,0 +1,323 @@
+```css
+/* ======================
+   RESET
+====================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body{
+    background-color: #f3f4f6;
+    color: #b91c1c;
+}
+
+/* ======================
+   CSS GRID (LAYOUT UTAMA)
+====================== */
+
+.dashboard{
+    min-height: 100vh;
+    display: grid;
+
+    /* CONTENT DI KIRI, SIDEBAR DI KANAN */
+    grid-template-columns: 1fr 280px;
+    grid-template-rows: 90px 1fr 70px;
+
+    grid-template-areas:
+        "header header"
+        "content sidebar"
+        "footer footer";
+}
+
+/* ======================
+   HEADER
+====================== */
+
+.header{
+    grid-area: header;
+    background-color: #dc2626;
+    color: white;
+    padding: 20px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1{
+    font-size: 2rem;
+}
+
+/* ======================
+   SEARCH BOX
+====================== */
+
+.search-box{
+    display: flex;
+    gap: 10px;
+}
+
+.search-box input{
+    width: 250px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+.search-box button{
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ec4899;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover{
+    background-color: #db2777;
+}
+
+/* ======================
+   SIDEBAR
+====================== */
+
+.sidebar{
+    grid-area: sidebar;
+    background-color: #80776b;
+    padding: 30px;
+}
+
+.sidebar h2{
+    color: white;
+    margin-bottom: 30px;
+    text-align: center;
+    background: linear-gradient(90deg, #6b7280, #ef4444);
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.sidebar ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 12px;
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: white;
+    background-color: #db2777;
+    padding: 18px;
+    border-radius: 12px;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover{
+    background-color: #ef4444;
+
+    /* Karena sidebar di kanan,
+       animasi bergerak ke kiri */
+    transform: translateX(-8px);
+}
+
+.sidebar a.active{
+    background-color: #ef4444;
+}
+
+/* ======================
+   CONTENT
+====================== */
+
+.content{
+    grid-area: content;
+    padding: 40px;
+}
+
+.content h2{
+    margin-bottom: 25px;
+    font-size: 2rem;
+    color: #dc2626;
+}
+
+/* ======================
+   MENU ATAS
+====================== */
+
+.menu-atas{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.menu-atas button{
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ec4899;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-atas button:hover{
+    background-color: #db2777;
+}
+
+/* ======================
+   CARD BERITA
+====================== */
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: stretch;
+}
+
+.card{
+    background-color: white;
+    flex: 1 1 320px;
+    padding: 25px;
+    border-radius: 20px;
+
+    box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(220,38,38,0.25);
+}
+
+.card h3{
+    margin-bottom: 15px;
+    color: #dc2626;
+}
+
+.card p{
+    line-height: 1.8;
+    color: #6b7280;
+}
+
+/* ======================
+   TOMBOL CARD
+====================== */
+
+.btn-card{
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-card button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ef4444;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-card button:hover{
+    background-color: #dc2626;
+}
+
+/* ======================
+   FOOTER
+====================== */
+
+.footer{
+    grid-area: footer;
+    background-color: #dc2626;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 20px;
+}
+
+.footer p{
+    margin: 0;
+}
+
+/* ======================
+   RESPONSIVE TABLET
+====================== */
+
+@media (max-width: 992px){
+
+    .dashboard{
+        grid-template-columns: 1fr 220px;
+    }
+
+    .header h1{
+        font-size: 1.5rem;
+    }
+
+    .search-box input{
+        width: 180px;
+    }
+}
+
+/* ======================
+   RESPONSIVE MOBILE
+====================== */
+
+@media (max-width: 768px){
+
+    .dashboard{
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "content"
+            "footer";
+    }
+
+    .header{
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .search-box{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-box input,
+    .search-box button{
+        width: 100%;
+    }
+
+    .menu-atas{
+        flex-direction: column;
+    }
+
+    .card-container{
+        flex-direction: column;
+    }
+
+    .sidebar{
+        padding: 20px;
+    }
+
+    .content{
+        padding: 25px;
+    }
+}
